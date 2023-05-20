@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import { LinkProps } from 'react-router-dom';
 
-import { LinkContainer, ILinkContainerProps } from './styles';
+import { LinkContainer } from './styles';
 
-interface ILinkProps extends LinkProps, ILinkContainerProps {
+interface ILinkProps extends LinkProps {
   children: ReactNode;
 }
 

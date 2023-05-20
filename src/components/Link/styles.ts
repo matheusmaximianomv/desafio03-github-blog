@@ -1,16 +1,10 @@
 import styled from 'styled-components';
-import { Link, LinkProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export interface ILinkContainerProps {
-  icondirection: 'left' | 'right';
-}
-
-export const LinkContainer = styled(Link)<LinkProps & ILinkContainerProps>`
+export const LinkContainer = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: ${(props) =>
-    props.icondirection === 'left' ? 'row' : 'row-reverse'};
   width: min-content;
 
   gap: 0.5rem;
@@ -22,6 +16,7 @@ export const LinkContainer = styled(Link)<LinkProps & ILinkContainerProps>`
   border-bottom: 1px solid transparent;
 
   text-decoration: none;
+  text-transform: uppercase;
 
   &:hover {
     border-bottom-color: ${(props) => props.theme['blue-500']};
