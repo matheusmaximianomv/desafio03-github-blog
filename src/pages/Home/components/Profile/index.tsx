@@ -7,6 +7,10 @@ import {
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import { Link } from '../../../../components/Link';
+import {
+  ListGithubContainer,
+  ListGithubItem,
+} from '../../../../components/DetailsGithub';
 
 import {
   ProfileContainer,
@@ -15,8 +19,6 @@ import {
   ProfileDescription,
   ProfileHeader,
   ProfileBio,
-  ProfileDetails,
-  ProfileDetailsItem,
 } from './styles';
 
 export function Profile() {
@@ -47,22 +49,22 @@ export function Profile() {
           </ProfileBio>
         </ProfileDescription>
 
-        <ProfileDetails>
-          <ProfileDetailsItem>
+        <ListGithubContainer>
+          <ListGithubItem>
             <FontAwesomeIcon icon={faGithub} />
             <span>matheusmaximianomv</span>
-          </ProfileDetailsItem>
+          </ListGithubItem>
 
-          <ProfileDetailsItem>
+          <ListGithubItem>
             <FontAwesomeIcon icon={faBuilding} />
             <span>Brisanet Telecomunicações</span>
-          </ProfileDetailsItem>
+          </ListGithubItem>
 
-          <ProfileDetailsItem>
+          <ListGithubItem>
             <FontAwesomeIcon icon={faUserGroup} />
             <span>32 seguidores</span>
-          </ProfileDetailsItem>
-        </ProfileDetails>
+          </ListGithubItem>
+        </ListGithubContainer>
       </ProfileApresentation>
     </ProfileContainer>
   );

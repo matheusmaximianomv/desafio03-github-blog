@@ -62,23 +62,3 @@ export const ProfileBio = styled.p`
   line-height: 1.6rem;
   color: ${(props) => props.theme['gray-300']};
 `;
-
-export const ProfileDetails = styled.div`
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1.5rem;
-`;
-
-export const ProfileDetailsItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  span {
-    line-height: 1.6rem;
-    color: ${(props) => props.theme['gray-200']};
-  }
-`;
