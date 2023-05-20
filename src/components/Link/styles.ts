@@ -17,6 +17,7 @@ export const LinkContainer = styled(Link)`
 
   text-decoration: none;
   text-transform: uppercase;
+  white-space: nowrap;
 
   &:hover {
     border-bottom-color: ${(props) => props.theme['blue-500']};
