@@ -34,9 +34,8 @@ export function Profile() {
             <Link
               to="https://github.com/matheusmaximianomv"
               rel="noopener noreferrer"
-              icondirection="left"
             >
-              GITHUB
+              Github
               <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </Link>
           </ProfileHeader>
