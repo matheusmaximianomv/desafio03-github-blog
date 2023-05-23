@@ -3,6 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { Foreground } from './components/Foreground';
 
+import { GithubContextProvider } from './contexts/github';
+
 import { Router } from './Router';
 
 import { GlobalStyle } from './styles/global';
@@ -14,7 +16,9 @@ export function App() {
       <Foreground />
 
       <BrowserRouter>
-        <Router />
+        <GithubContextProvider>
+          <Router />
+        </GithubContextProvider>
       </BrowserRouter>
 
       <GlobalStyle />
