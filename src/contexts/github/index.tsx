@@ -67,7 +67,7 @@ export function GithubContextProvider({ children }: IGithubProviderProps) {
   }, [fetchUser, fetchIssues]);
 
   return (
-    <GithubContext.Provider value={{ user, issues }}>
+    <GithubContext.Provider value={{ user, issues, fetchIssues }}>
       {children}
     </GithubContext.Provider>
   );

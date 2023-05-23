@@ -1,3 +1,5 @@
+import { useContextSelector } from 'use-context-selector';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowUpRightFromSquare,
@@ -11,6 +13,7 @@ import {
   ListGithubContainer,
   ListGithubItem,
 } from '../../../../components/DetailsGithub';
+import { GithubContext } from '../../../../contexts/github';
 
 import {
   ProfileContainer,
@@ -22,47 +25,45 @@ import {
 } from './styles';
 
 export function Profile() {
+  const user = useContextSelector(GithubContext, (context) => context.user);
+
   return (
     <ProfileContainer>
-      <ProfileAvatar
-        src="https://avatars.githubusercontent.com/u/44318510?v=4"
-        alt="Matheus Maximiano"
-      />
+      <ProfileAvatar src={user.avatar_url} alt={user.name} />
 
       <ProfileApresentation>
         <ProfileDescription>
           <ProfileHeader>
-            <h2>Matheus Maximiano</h2>
-            <Link
-              to="https://github.com/matheusmaximianomv"
-              rel="noopener noreferrer"
-            >
+            <h2>{user.name}</h2>
+            <Link to={user.html_url} rel="noopener noreferrer">
               Github
               <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </Link>
           </ProfileHeader>
 
-          <ProfileBio>
-            Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-            viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-            volutpat pulvinar vel mass.
-          </ProfileBio>
+          <ProfileBio>{user.bio}</ProfileBio>
         </ProfileDescription>
 
         <ListGithubContainer>
           <ListGithubItem>
             <FontAwesomeIcon icon={faGithub} />
-            <span>matheusmaximianomv</span>
+            <span>{user.login}</span>
           </ListGithubItem>
 
-          <ListGithubItem>
-            <FontAwesomeIcon icon={faBuilding} />
-            <span>Brisanet Telecomunicações</span>
-          </ListGithubItem>
+          {user.company && (
+            <ListGithubItem>
+              <FontAwesomeIcon icon={faBuilding} />
+              <span>{user.company}</span>
+            </ListGithubItem>
+          )}
 
           <ListGithubItem>
             <FontAwesomeIcon icon={faUserGroup} />
-            <span>32 seguidores</span>
+            <span>
+              {parseInt(user.followers) === 1
+                ? `${user.followers} seguidor`
+                : `${user.followers} seguidores`}
+            </span>
           </ListGithubItem>
         </ListGithubContainer>
       </ProfileApresentation>
