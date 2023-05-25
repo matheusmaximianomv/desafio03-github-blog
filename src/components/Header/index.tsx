@@ -1,10 +1,11 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 import logo from '../../assets/logo.svg';
 
 import { HeaderContainer } from './styles';
 
-export function Header() {
+function HeaderComponent() {
   return (
     <HeaderContainer>
       <Link to="/">
@@ -13,3 +14,5 @@ export function Header() {
     </HeaderContainer>
   );
 }
+
+export const Header = memo(HeaderComponent);

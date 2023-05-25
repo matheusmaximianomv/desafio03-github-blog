@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useContextSelector } from 'use-context-selector';
 import { useForm } from 'react-hook-form';
 import * as zod from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { debounce } from 'lodash';
 
 import { Input } from '../../../../components/Input';
 import { GithubContext } from '../../../../contexts/github';
@@ -34,15 +35,26 @@ export function SearchForm() {
     fetchIssues(name);
   }
 
+  const debouncedChangeHandler = useMemo(
+    () => debounce(actionWatchForm, 500),
+    []
+  );
+
   useEffect(() => {
     const subscription = watch((value) => {
-      actionWatchForm(value as TypeIssueForm);
+      debouncedChangeHandler(value as TypeIssueForm);
     });
 
     return () => {
       subscription.unsubscribe();
     };
   }, [watch]);
+
+  useEffect(() => {
+    return () => {
+      debouncedChangeHandler.cancel();
+    };
+  }, []);
 
   return (
     <SearchFormContainer>
