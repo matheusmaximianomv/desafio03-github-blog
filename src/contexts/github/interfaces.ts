@@ -42,6 +42,7 @@ export interface IGithubContextData {
   user: IUser;
   issues: IIssue[];
   fetchIssues: (name?: string) => Promise<void>;
+  fetchIssueByNumber: (id: number) => Promise<IIssueResponseItem>;
 }
 
 export interface IGithubProviderProps {

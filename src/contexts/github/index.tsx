@@ -9,6 +9,7 @@ import {
   IUser,
   IIssue,
   IIssueResponse,
+  IIssueResponseItem,
 } from './interfaces';
 
 const USERNAME = 'matheusmaximianomv';
@@ -62,12 +63,25 @@ export function GithubContextProvider({ children }: IGithubProviderProps) {
     setIssues(issues);
   }, []);
 
+  const fetchIssueByNumber = useCallback(
+    async (id: number): Promise<IIssueResponseItem> => {
+      const response = await api.get<IIssueResponseItem>(
+        `repos/${USERNAME}/${REPOSITORY_NAME}/issues/${id}`
+      );
+
+      return response.data;
+    },
+    []
+  );
+
   useEffect(() => {
     Promise.all([fetchUser(), fetchIssues()]);
   }, [fetchUser, fetchIssues]);
 
   return (
-    <GithubContext.Provider value={{ user, issues, fetchIssues }}>
+    <GithubContext.Provider
+      value={{ user, issues, fetchIssues, fetchIssueByNumber }}
+    >
       {children}
     </GithubContext.Provider>
   );
