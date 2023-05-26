@@ -15,4 +15,8 @@ export const HomeListPublications = styled.article`
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
   justify-items: center;
+
+  a {
+    text-decoration: none;
+  }
 `;
