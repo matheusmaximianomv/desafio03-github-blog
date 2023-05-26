@@ -12,6 +12,7 @@ import {
   ListGithubContainer,
   ListGithubItem,
 } from '../../../../components/DetailsGithub';
+import { humanizeDate } from '../../../../utils/formatter';
 
 import {
   PostInfoContainer,
@@ -20,7 +21,21 @@ import {
   PostInfoTitle,
 } from './styles';
 
-export function PostInfo() {
+export interface PostInfoProps {
+  html_url: string;
+  title: string;
+  owner: string;
+  created_at: string;
+  comments: number;
+}
+
+export function PostInfo({
+  html_url,
+  title,
+  owner,
+  created_at,
+  comments,
+}: PostInfoProps) {
   return (
     <PostInfoContainer>
       <PostInfoActions>
@@ -29,29 +44,31 @@ export function PostInfo() {
           Voltar
         </Link>
 
-        <Link to="/" rel="noopener noreferrer">
+        <Link to={html_url} rel="noopener noreferrer">
           Ver no github
           <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
         </Link>
       </PostInfoActions>
 
       <PostInfoData>
-        <PostInfoTitle>JavaScript data types and data structures</PostInfoTitle>
+        <PostInfoTitle>{title}</PostInfoTitle>
 
         <ListGithubContainer>
           <ListGithubItem>
             <FontAwesomeIcon icon={faGithub} />
-            <span>matheusmaximianomv</span>
+            <span>{owner}</span>
           </ListGithubItem>
 
           <ListGithubItem>
             <FontAwesomeIcon icon={faCalendarDay} />
-            <span>Há 1 dia</span>
+            <span>{humanizeDate(new Date(created_at))}</span>
           </ListGithubItem>
 
           <ListGithubItem>
             <FontAwesomeIcon icon={faComment} />
-            <span>5 comentários</span>
+            <span>
+              {comments === 1 ? 'Um comentário' : `${comments} comentários`}
+            </span>
           </ListGithubItem>
         </ListGithubContainer>
       </PostInfoData>
